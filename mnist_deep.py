@@ -63,8 +63,11 @@ model = tf.keras.Sequential(
 # compile
 model.compile(
     optimizer=tf.keras.optimizers.Adam(lr=0.01),
-    loss='categorical_crosssentropy',
+    loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
 
-model.fit(x_train, y_train, epochs=3)
+model.fit(x=x_train, y=y_train, epochs=3)
+
+val_loss, val_acc = model.evaluate(x_test, y_test)
+print(val_loss, val_acc)
